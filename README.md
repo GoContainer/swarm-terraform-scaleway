@@ -1,16 +1,27 @@
 # Cluster Swarm avec Terraform et Scaleway
 
+## Description
+
+Le projet permet en quelques secondes de monter une base d'un cluster swarm avec le provider scaleway et terraform.
+
 ## Prérequis
 - Docker
 - Make
 - Un compte Scaleway
 
-## Utilisation
+## Installation du projet
+  
+```
+git clone git@github.com:GoContainer/swarm-terraform-scaleway.git
+cd swarm-terraform-scaleway
+cp terraform.tfvars.example terraform.tfvars 
+```
 
-Vous devez copier le fichier d'exemple et y insérer votre token et organization.  
-``cp terraform.tfvars.example terraform.tfvars``.  
-Une fois cela rélaisé, vous devez ajouter votre clée SSH dans le dossier tmp ``mkdir -p tmp && ln -s ~/.ssh/id_rsa tmp/id_rsa``
-Puis vous devez faire un ``make apply``.
+Modifier les valeurs du fichier terraform.tfvars 
 
-Et voilà, votre cluster Docker Swarm est disponible & fonctionnel.
+## Utilisations 
 
+``make apply`` : Lance la création du cluster swarm selon le fichier de configuration.   
+``make destroy`` : Supprime le cluster créé.  
+``make output`` : Donne l'IP du swarm manager.  
+``make validate`` : Permet de validé les valeurs mise en conf.

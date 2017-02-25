@@ -1,0 +1,37 @@
+variable "scw_token" {
+  description = "Scaleway Token"
+}
+
+variable "scw_organization" {
+  description = "Scaleway Organization"
+}
+
+variable "scw_region" {
+  default     = "par1"
+  description = "Scaleway Region"
+}
+
+variable "scw_type_manager" {
+  default     = "VC1S"
+  description = "Scaleway type for Manager"
+}
+
+variable "scw_type_node" {
+  default     = "VC1S"
+  description = "Scaleway type for Node"
+}
+
+variable "scw_machine_user" {
+  default     = "root"
+  description = "User for machine"
+}
+
+variable "scw_ssh_key" {
+  default     = "~/.ssh/id_rsa"
+  description = "Scaleway SSH key"
+}
+
+variable "swarm_nodes" {
+  default     = 1
+  description = "Number of nodes in the cluster"
+}

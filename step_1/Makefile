@@ -10,6 +10,8 @@ destroy: terraform-destroy	## Destroy infrastructure
 
 output: terraform-output		## Display State Output
 
+init: make-init				## Init project
+
 terraform-validate:
 	terraform validate
 
@@ -33,6 +35,10 @@ terraform-destroy:
 
 terraform-output:
 	terraform output
+
+make-init:
+	ansible-galaxy install GoContainer.system-update
+	ansible-galaxy install GoContainer.glusterfs
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

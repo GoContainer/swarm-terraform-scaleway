@@ -11,3 +11,7 @@
   roles:
     - GoContainer.system-update
     - GoContainer.glusterfs
+
+  tasks:
+    - name: Install docker volume plugins local-persist
+      command:

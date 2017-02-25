@@ -75,3 +75,7 @@ terraform.tfvars
 swarm.token
 tmp/
 .terraform
+*.tfvars
+/.floo
+/.flooignore
+/step_1/ansible.retry

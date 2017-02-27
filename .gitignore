@@ -80,3 +80,5 @@ tmp/
 /.flooignore
 /step_1/ansible.retry
 /step_1/inventory_ansible_swarm
+/step_0/ansible.retry
+/step_0/inventory_ansible_swarm

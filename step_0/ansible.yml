@@ -1,0 +1,30 @@
+---
+- hosts: all
+  user: root
+  become: true
+  vars:
+    glusterfs_ppa_use: false
+    gluster_mount_dir: /mnt/data
+    gluster_brick_dir: /srv/gluster/brick
+    gluster_brick_name: gluster
+
+  roles:
+    - GoContainer.system-update
+
+  tasks:
+
+  - name: Init docker swarm cluster
+    command: docker swarm init
+    when: "inventory_hostname == groups.all[0]"
+
+  - name: Get variable for token worker
+    set_fact: "docker_swarm_token="docker swarm join-token -q worker"
+    when: "inventory_hostname == groups.all[0]"
+
+  - name: Get variable for ip swarm manager
+    set_fact: "docker_swarm_ip="{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}"
+    when: "inventory_hostname == groups.all[0]"
+
+  - name: Join docker swarm cluster
+    command: docker swarm join --token {{ docker_swarm_token }} {{ docker_swarm_ip }}:2377
+    when: "inventory_hostname != groups.all[0]"

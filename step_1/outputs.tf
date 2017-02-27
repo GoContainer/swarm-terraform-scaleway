@@ -1,3 +1,3 @@
-output "Docker Swarm Manager(s) Public IPs" {
-  value = "${join("\n               ", formatlist("%s", split(",", scaleway_server.swarm_manager.public_ip)))}"
+output "cluster_swarm" {
+  value = "${join("\n", scaleway_server.swarm_node.*.public_ip)}"
 }

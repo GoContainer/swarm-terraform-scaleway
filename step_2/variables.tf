@@ -12,12 +12,12 @@ variable "scw_region" {
 }
 
 variable "scw_type_manager" {
-  default     = "VC1S"
+  default     = "VC1M"
   description = "Scaleway type for Manager"
 }
 
 variable "scw_type_node" {
-  default     = "VC1S"
+  default     = "VC1M"
   description = "Scaleway type for Node"
 }
 
@@ -32,6 +32,6 @@ variable "scw_ssh_key" {
 }
 
 variable "swarm_nodes" {
-  default     = 1
+  default     = 3
   description = "Number of nodes in the cluster"
 }

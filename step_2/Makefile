@@ -1,10 +1,8 @@
 .DEFAULT_GOAL := help
 
-create: terraform-validate terraform-get terraform-apply ## Apply Changes
+create: ansible-galaxy-install terraform-validate terraform-get terraform-apply ## Apply Changes
 
 destroy: terraform-destroy								## Destroy infrastructure
-
-init: ansible-galaxy-install							## Init project
 
 terraform-validate:
 	terraform validate

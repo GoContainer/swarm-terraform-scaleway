@@ -1,9 +1,18 @@
 version: '3'
 
 volumes:
-    prometheus_config: {'/mnt/data/monitoring/prometheus/config'}
-    prometheus_data: {'/mnt/data/monitoring/prometheus/data'}
-    grafana_data: {'/mnt/data/monitoring/grafana/data'}
+    prometheus_config:
+      driver: local-persist
+      driver_opts:
+        mountpoint: '/mnt/data/monitoring/prometheus/config'
+    prometheus_data:
+      driver: local-persist
+      driver_opts:
+        mountpoint: '/mnt/data/monitoring/prometheus/data'
+    grafana_data:
+      driver: local-persist
+      driver_opts:
+        mountpoint: '/mnt/data/monitoring/grafana/data'
 
 networks:
   monitoring:

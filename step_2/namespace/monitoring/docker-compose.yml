@@ -67,6 +67,8 @@ services:
       - '3000:3000'
     volumes:
       - grafana_data:/var/lib/grafana
+    environement:
+      - GF_USERS_ALLOW_SIGN_UP=false
     env_file:
       - config.monitoring
     networks:

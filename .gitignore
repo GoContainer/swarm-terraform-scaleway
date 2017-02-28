@@ -82,3 +82,7 @@ tmp/
 /step_1/inventory_ansible_swarm
 /step_0/ansible.retry
 /step_0/inventory_ansible_swarm
+/step_2/inventory_ansible_swarm
+/step_2/terraform.tfstate
+/step_2/swarm.token
+/step_2/terraform.tfstate.backup

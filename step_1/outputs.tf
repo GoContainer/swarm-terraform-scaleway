@@ -3,5 +3,5 @@ output "cluster_node_swarm" {
 }
 
 output "cluster_master_swarm" {
-  value = "${join("\n", scaleway_server.swarm_manager.public_ip)}"
+  value = "${join("\n", scaleway_server.swarm_manager.*.public_ip)}"
 }

@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-apply: terraform-validate terraform-get terraform-apply ## Apply Changes
+create: terraform-validate terraform-get terraform-apply ## Apply Changes
 
 destroy: terraform-destroy								## Destroy infrastructure
 

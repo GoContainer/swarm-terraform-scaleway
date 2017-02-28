@@ -15,6 +15,11 @@ resource "scaleway_server" "swarm_manager" {
   type  = "${var.scw_type_manager}"
   dynamic_ip_required = true
 
+  volume {
+    size_in_gb = 50
+    type = "l_ssd"
+  }
+
   connection {
     user     = "${var.scw_machine_user}"
     private_key = "${file("${var.scw_ssh_key}")}"
@@ -34,9 +39,6 @@ resource "scaleway_server" "swarm_manager" {
   provisioner "local-exec" {
     command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${var.scw_ssh_key} ${var.scw_machine_user}@${scaleway_server.swarm_manager.public_ip}:/tmp/swarm.token ."
   }
-  provisioner "local-exec" {
-    command = "echo [all] >> inventory_ansible_swarm && echo ${self.public_ip} ansible_connection=ssh ansible_ssh_user=root >> inventory_ansible_swarm"
-  }
  }
 
 resource "scaleway_server" "swarm_node" {
@@ -45,6 +47,11 @@ resource "scaleway_server" "swarm_node" {
   type  = "${var.scw_type_node}"
   count = "${var.swarm_nodes}"
   dynamic_ip_required = true
+
+  volume {
+    size_in_gb = 50
+    type = "l_ssd"
+  }
 
   connection {
     user     = "${var.scw_machine_user}"
@@ -62,9 +69,4 @@ resource "scaleway_server" "swarm_node" {
       "docker swarm join --token $(cat /tmp/node.token) ${scaleway_server.swarm_manager.private_ip}:2377"
     ]
   }
-
-  provisioner "local-exec" {
-    command = "echo ${self.public_ip} ansible_connection=ssh ansible_ssh_user=root >> inventory_ansible_swarm"
-  }
-
 }

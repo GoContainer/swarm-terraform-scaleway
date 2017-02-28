@@ -5,10 +5,20 @@
   vars:
     glusterfs_ppa_use: false
     gluster_mount_dir: /mnt/data
-    gluster_brick_dir: /srv/gluster/brick
+    gluster_brick_dir: /data
     gluster_brick_name: gluster
+    disk_additional_disks:
+      - disk: /dev/vdb
+        fstype: ext4
+        mount_options: defaults
+        mount: /data
+
+  pre_tasks:
+    - name: Clear file
+      command: rm -rf /etc/apt/apt.conf.d/50unattended-upgrades*
 
   roles:
     - GoContainer.system-update
+    - AerisCloud.disk
     - GoContainer.glusterfs
     - GoContainer.docker-local-persist

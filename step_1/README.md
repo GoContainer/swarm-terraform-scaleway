@@ -9,6 +9,12 @@ Le projet permet en quelques secondes de monter une base d'un cluster swarm avec
 - Make
 - Un compte Scaleway
 
+## Utilisation
+
+- Scaleway VM = VC1M
+- Nombre min de Manager = 1
+- Nombre mon de Node = 3 
+
 ## Installation du projet
   
 ```

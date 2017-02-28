@@ -31,6 +31,7 @@ services:
     command:
       - '-config.file=/etc/prometheus/prometheus.yml'
       - '-storage.local.path=/prometheus'
+      - '-storage.local.retention=48h'
     depends_on:
       - cadvisor
     networks:
@@ -67,9 +68,5 @@ services:
       - '3000:3000'
     volumes:
       - grafana_data:/var/lib/grafana
-    environement:
-      - GF_USERS_ALLOW_SIGN_UP=false
-    env_file:
-      - config.monitoring
     networks:
       - monitoring

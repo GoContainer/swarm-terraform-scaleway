@@ -4,9 +4,6 @@
   become: true
   vars:
     glusterfs_ppa_use: false
-    gluster_mount_dir: /mnt/data
-    gluster_brick_dir: /data
-    gluster_brick_name: gluster
     disk_additional_disks:
       - disk: /dev/vdb
         fstype: ext4

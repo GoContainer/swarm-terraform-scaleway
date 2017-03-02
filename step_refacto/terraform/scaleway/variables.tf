@@ -35,3 +35,13 @@ variable "swarm_nodes" {
   default     = 3
   description = "Number of nodes in the cluster"
 }
+
+variable "scw_type_glusterfs" {
+  default     = "VC1M"
+  description = "Scaleway type for GlusterFS"
+}
+
+variable "swarm_glusterfs" {
+  default     = 3
+  description = "Number of glusterfs"
+}

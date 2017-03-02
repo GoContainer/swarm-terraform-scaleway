@@ -81,7 +81,14 @@
       changed_when: "'successful' in gluster_volume_start.stdout"
       when: "inventory_hostname == groups.swarm_glusterfs[0] and 'Volume Name: gluster' not in gluster_volume_info.stdout"
 
-    # Mount configuration.
+    - name: Ensure GlusterFS is installed.
+      apt:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - glusterfs-client
+      when: "inventory_hostname == groups.swarm_master[0] or inventory_hostname == groups.swarm_node[0]"
+
     - name: Ensure the Gluster volume is mounted.
       mount:
         name: "{{ gluster_mount_dir }}"
@@ -90,9 +97,6 @@
         opts: "defaults,_netdev"
         state: mounted
       when: "inventory_hostname == groups.swarm_master[0] or inventory_hostname == groups.swarm_node[0]"
-
-
-
 
 
 #

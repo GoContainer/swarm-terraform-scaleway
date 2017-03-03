@@ -98,20 +98,19 @@
         state: mounted
       when: "inventory_hostname == groups.swarm_master[0] or inventory_hostname == groups.swarm_node[0]"
 
+# Install Sweady
+    - name: Clone project
+      git:
+        repo: https://github.com/GoContainer/Sweady.git
+        dest: /tmp/sweady
 
-#
-#    - name: Clone project
-#      git:
-#        repo: https://github.com/GoContainer/Sweady.git
-#        dest: /tmp/sweady
-#
-#    - name: Config for Prometheus
-#      copy:
-#        src: /tmp/sweady/namespace/monitoring/prometheus/prometheus.yml
-#        dest: /mnt/data/monitoring/prometheus/config/prometheus.yml
-#        owner: root
-#        group: root
-#        mode: 0755
-#
-#    - name: Deploy monitoring stack
-#      command: docker stack deploy -c /tmp/sweady/namespace/monitoring/docker-compose.yml monitoring
+    - name: Config for Prometheus
+      copy:
+        src: /tmp/sweady/docker-compose/monitoring/prometheus/prometheus.yml
+        dest: /mnt/data/monitoring/prometheus/config/prometheus.yml
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Deploy monitoring stack
+      command: docker stack deploy -c /tmp/sweady/docker-compose/monitoring/docker-compose.yml monitoring
